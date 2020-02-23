@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title></title>
+        
+        <!-- Fonts -->
+        
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,300,600' rel='stylesheet' type='text/css'>
+        
+        <!-- Styles -->
+        
+        <link rel="stylesheet" href="<?php echo $app->asset('css/jquery.mCustomScrollbar.css') ?>" />
+        <link rel="stylesheet" href="<?php echo $app->asset('css/main.css') ?>" />
+        <link rel="stylesheet" href="<?php echo $app->asset('css/admin.css') ?>" />
+        <link rel="stylesheet" href="<?php echo $app->asset('css/bootstrap-popover.css') ?>" />
+        <link rel="stylesheet" href="<?php echo $app->asset('css/bootstrap.css') ?>" />
+        <link rel="stylesheet" href="<?php echo $app->asset('css/colorpicker.css') ?>" />
+        <link rel="stylesheet" href="<?php echo $app->asset('css/ui-lightness/jquery-ui-1.10.3.custom.css') ?>" />
+    </head>
+    <body>
+        <div id="customer-chat" class="customer-chat customer-chat-admin">
+            <div class="customer-chat-header">
+                <div class="customer-chat-header-title">Chat admin panel</div>
+                <div id="customer-chat-button-menu" class="customer-chat-header-button">
+                    <div class="customer-chat-content-message-avatar-operator"></div>
+                    <div class="customer-chat-header-button-text"></div>
+                    <i class="icon-chevron-down icon-white"></i>
+                </div>
+                
+                <div class="customer-chat-header-menu">
+                    <div class="customer-chat-header-menu-triangle"></div>
+                    
+                    <a href="#" id="customer-chat-header-menu-edit" class="customer-chat-header-menu-item" data-id="0"><i class="icon-user"></i> <div>Edit profile</div></a>
+                    <a href="<?php echo $app->path('Install:index') ?>" id="customer-chat-header-menu-install" class="customer-chat-header-menu-item"><i class="icon-chevron-right"></i> <div>Install</div></a>
+                    <a href="<?php echo $app->path('Install:uninstall') ?>" id="customer-chat-header-menu-uninstall" class="customer-chat-header-menu-item"><i class="icon-remove"></i> <div>Uninstall</div></a>
+                    <a href="#" id="customer-chat-header-menu-widget-snippet" class="customer-chat-header-menu-item"><i class="icon-align-left"></i> <div>Get widget script</div></a>
+                    <a href="<?php echo $app->path('Authentication:logout') ?>" class="customer-chat-header-menu-item"><i class="icon-off"></i> <div>Logout</div></a>
+                </div>
+            </div>
+            
+            <div class="customer-chat-content">
+                <div class="customer-chat-side-menu">
+                    <a href="#" id="customer-chat-side-button-chat" class="customer-chat-side-menu-item"><i class="icon-comment icon-white"></i></a>
+                    <a href="#" id="customer-chat-side-button-settings" class="customer-chat-side-menu-item"><i class="icon-wrench icon-white"></i></a>
+                    <a href="#" id="customer-chat-side-button-widget-snippet" class="customer-chat-side-menu-item"><i class="icon-align-left icon-white"></i></a>
+                    <a href="<?php echo $app->path('Authentication:logout') ?>" class="customer-chat-side-menu-item"><i class="icon-off icon-white"></i></a>
+                    
+                    <div class="customer-chat-side-menu-triangle"></div>
+                </div>
+                
+                <div class="customer-chat-content-wrapper">
+                    <div id="customer-chat-admin-chat">
+                        <div>
+                            <div id="customer-chat-users-online">
+                                <div class="customer-chat-talk-header">Online users</div>
+                                <div class="customer-chat-content-messages users">
+                                    <div class="customer-chat-content-messages-wrapper users"></div>
+                                </div>
+                                
+                                <div class="customer-chat-talk-header operators">Online operators</div>
+                                <div class="customer-chat-content-messages operators">
+                                    <div class="customer-chat-content-messages-wrapper operators"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-wrapper">
+                            <div class="customer-chat-tabs">
+                                <a href="#" class="customer-chat-tab customer-chat-tab-prev"><i class="icon-chevron-left"></i></a>
+                                <div class="customer-chat-tabs-wrapper"></div>
+                                <a href="#" class="customer-chat-tab customer-chat-tab-next"><i class="icon-chevron-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="customer-chat-admin-settings">
+                        <div class="customer-chat-tabs">
+                            <a href="#" class="customer-chat-tab customer-chat-tab-prev"><i class="icon-chevron-left"></i></a>
+                            <div class="customer-chat-tabs-wrapper">
+                                <a href="#" class="customer-chat-tab customer-chat-tab-button customer-chat-active">Settings</a>
+                                <a href="#" class="customer-chat-tab customer-chat-tab-button operators">Operators</a>
+                                <a href="#" class="customer-chat-tab customer-chat-tab-button">History</a>
+                            </div>
+                            <a href="#" class="customer-chat-tab customer-chat-tab-next"><i class="icon-chevron-right"></i></a>
+                        </div>
+                        <div class="customer-chat-tab-content customer-chat-tab-content-settings customer-chat-tab-content-settings-ui">
+                            <div class="customer-chat-content-messages">
+                                <div class="customer-chat-content-messages-wrapper">
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Primary color</div>
+                                        <input type="text" name="primaryColor" data-validator="color" class="customer-chat-content-message-input-field color-input" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Secondary color</div>
+                                        <input type="text" name="secondaryColor" data-validator="color" class="customer-chat-content-message-input-field color-input" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Label color</div>
+                                        <input type="text" name="labelColor" data-validator="color" class="customer-chat-content-message-input-field color-input" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Contact form e-mail</div>
+                                        <input type="text" name="contactMail" data-validator="mail" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Hide when off-line</div>
+                                        <div class="customer-chat-content-message-input-field customer-chat-content-message-input-checkbox">
+                                            <input type="checkbox" name="hideWhenOffline" />
+                                        </div>
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Chat header</div>
+                                        <input type="text" name="chatHeader" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Welcome message</div>
+                                        <input type="text" name="startInfo" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Name label</div>
+                                        <input type="text" name="contactNameLabel" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">E-mail label</div>
+                                        <input type="text" name="contactMailLabel" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">New message sound</div>
+                                        <select id="inputMsgSound" name="messageSound" class="customer-chat-content-message-input-field">
+                                            <?php foreach($vars['messageSounds'] as $soundName => $soundPath) { ?>
+                                            <option value="<?php echo $soundPath; ?>"><?php echo $soundName; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Maximum connections</div>
+                                        <input type="text" name="maxConnections" data-validator="number" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Start chat button label</div>
+                                        <input type="text" name="startLabel" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Loading message</div>
+                                        <input type="text" name="loadingLabel" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Login error message</div>
+                                        <input type="text" name="loginError" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Back button label</div>
+                                        <input type="text" name="backLabel" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Chat input label</div>
+                                        <input type="text" name="chatInputLabel" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Initial message body</div>
+                                        <input type="text" name="initMessageBody" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Initial message author</div>
+                                        <input type="text" name="initMessageAuthor" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Message time days</div>
+                                        <input type="text" name="timeDaysAgo" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Message time hours</div>
+                                        <input type="text" name="timeHoursAgo" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Message time minutes</div>
+                                        <input type="text" name="timeMinutesAgo" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Message time seconds</div>
+                                        <input type="text" name="timeSecondsAgo" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Operator off-line message</div>
+                                        <input type="text" name="offlineMessage" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Toggle sound label</div>
+                                        <input type="text" name="toggleSoundLabel" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Toggle auto-scroll label</div>
+                                        <input type="text" name="toggleScrollLabel" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Toggle emoticons label</div>
+                                        <input type="text" name="toggleEmoticonsLabel" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Toggle auto-show label</div>
+                                        <input type="text" name="toggleAutoShowLabel" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Contact form header</div>
+                                        <input type="text" name="contactHeader" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Contact form info message</div>
+                                        <input type="text" name="contactInfo" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Contact form question label</div>
+                                        <input type="text" name="contactQuestionLabel" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Contact form send button label</div>
+                                        <input type="text" name="contactSendLabel" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Contact form success header</div>
+                                        <input type="text" name="contactSuccessHeader" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Contact form success message</div>
+                                        <input type="text" name="contactSuccessMessage" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Contact form error header</div>
+                                        <input type="text" name="contactErrorHeader" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <div class="customer-chat-label">Contact form error message</div>
+                                        <input type="text" name="contactErrorMessage" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            
+                            <div class="customer-chat-content-message">
+                                <a href="#" id="customer-chat-ui-save" class="customer-chat-content-button customer-chat-content-button-inline">Save</a>
+                                <a href="#" id="customer-chat-ui-reset" class="customer-chat-content-button customer-chat-content-button-inline">Reset to defaults</a>
+                                <img class="customer-chat-content-loading-icon" src="<?php echo $app->asset('img/loading.gif') ?>" />
+                            </div>
+                        </div>
+                        
+                        <div class="customer-chat-tab-content" id="customer-chat-operators-tab">
+                            <div class="customer-chat-tab-content customer-chat-tab-content-settings customer-chat-tab-content-operators customer-chat-tab-content-operators-list" id="customer-chat-operators-list">
+                                <div class="customer-chat-content-message">
+                                    <div class="customer-chat-tabs-header">Operators</div>
+                                    <a id="customer-chat-operators-add" href="#" class="customer-chat-content-button customer-chat-content-button-inline">Add new</a>
+                                </div>
+
+                                <div class="customer-chat-content-messages">
+                                    <div class="customer-chat-content-messages-wrapper"></div>
+                                </div>
+                            </div>
+                            <div class="customer-chat-tab-content customer-chat-tab-content-settings customer-chat-tab-content-operators" id="customer-chat-operators-edit">
+                                <div class="customer-chat-content-message">
+                                    <div class="customer-chat-tabs-header">Edit operator</div>
+                                    <a id="customer-chat-operators-back" href="#" class="customer-chat-content-button customer-chat-content-button-inline">Back to list</a>
+                                </div>
+
+                                <div class="customer-chat-content-messages edit-operator">
+                                    <div class="customer-chat-content-row add-only edit-only">
+                                        <div class="customer-chat-label">Username</div>
+                                        <input type="text" id="usernameField" class="customer-chat-content-message-input-field" data-validator="notEmpty" data-validator-label="Username" data-validator-state-ex="pass" />
+                                    </div>
+                                    <div class="customer-chat-content-row add-only edit-only">
+                                        <div class="customer-chat-label">E-mail</div>
+                                        <input type="text" id="mailField" class="customer-chat-content-message-input-field" data-validator="mail" data-validator-label="E-mail" data-validator-state-ex="pass" />
+                                    </div>
+                                    <div class="customer-chat-content-row add-only">
+                                        <div class="customer-chat-label">Password</div>
+                                        <input type="password" id="passField" class="customer-chat-content-message-input-field" data-validator="password" data-validator-match="rePassField" data-validator-state="add" data-validator-label="Password" />
+                                    </div>
+                                    <div class="customer-chat-content-row add-only">
+                                        <div class="customer-chat-label">Retype password</div>
+                                        <input type="password" id="rePassField" class="customer-chat-content-message-input-field" data-validator="password" data-validator-match="passField" data-validator-state="add" data-validator-msg="false" />
+                                    </div>
+                                    <div class="customer-chat-content-row edit-only">
+                                        <div class="customer-chat-label">Avatar</div>
+                                        <i id="imageField" class="avatar customer-chat-content-message-avatar-operator"></i>
+                                        <div class="customer-chat-upload-field customer-chat-content-message-input-field">
+                                            <input id="avatarUploadField" name="avatar" type="file" />
+                                        </div>
+                                        <a href="#" id="avatar-from-collection" class="customer-chat-content-button customer-chat-content-button-inline">From collection...</a>
+                                    </div>
+                                    <div class="customer-chat-content-row pass-only current-pass">
+                                        <div class="customer-chat-label">Current password</div>
+                                        <input type="password" id="changePassCurrentField" class="customer-chat-content-message-input-field" />
+                                    </div>
+                                    <div class="customer-chat-content-row pass-only">
+                                        <div class="customer-chat-label">New password</div>
+                                        <input type="password" id="changePassField" class="customer-chat-content-message-input-field" data-validator="password" data-validator-match="changePassRetypeField" data-validator-state="pass" data-validator-label="Password" />
+                                    </div>
+                                    <div class="customer-chat-content-row pass-only">
+                                        <div class="customer-chat-label">Retype new password</div>
+                                        <input type="password" id="changePassRetypeField" class="customer-chat-content-message-input-field" data-validator="password" data-validator-match="changePassField" data-validator-state="pass" data-validator-msg="false" />
+                                    </div>
+                                </div>
+                                
+                                <div class="customer-chat-content-message button-row">
+                                    <a id="customer-chat-operators-change-password" href="#" class="customer-chat-content-button customer-chat-content-button-inline edit-only">Change password</a>
+                                    <a id="customer-chat-operators-cancel" href="#" class="customer-chat-content-button customer-chat-content-button-inline pass-only">Cancel</a>
+                                    <a id="customer-chat-operators-save" href="#" class="customer-chat-content-button customer-chat-content-button-inline">Save</a>
+                                    <img class="customer-chat-content-loading-icon" src="<?php echo $app->asset('img/loading.gif') ?>" />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="customer-chat-history" class="customer-chat-tab-content customer-chat-tab-content-settings customer-chat-tab-content-history">
+                            
+                            <div class="customer-chat-history-list">
+                                <div id="customer-chat-history-filters">
+                                    <div class="customer-chat-content-row">
+                                        <input type="text" name="name" id="searchUsername" class="customer-chat-content-message-input-field" placeholder="Username" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <input type="text" name="mail" id="searchEmail" class="customer-chat-content-message-input-field" placeholder="E-mail" />
+                                    </div>
+                                    <div class="customer-chat-content-row">
+                                        <input type="text" name="fromDate" id="searchFromDate" class="date-input customer-chat-content-message-input-field" placeholder="From date" />
+                                        <input type="text" name="toDate" id="searchToDate" class="date-input customer-chat-content-message-input-field" placeholder="To date" />
+                                    </div>
+                                    
+                                    <div class="customer-chat-content-message">
+                                        <a href="#" id="customer-chat-history-search" class="customer-chat-content-button customer-chat-content-button-inline">Search</a>
+                                        <img class="customer-chat-content-loading-icon" src="<?php echo $app->asset('img/loading.gif') ?>" />
+                                    </div>
+                                </div>
+                                <div id="customer-chat-history-search-results" class="customer-chat-content-messages">
+                                    <div class="customer-chat-content-messages-wrapper"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="customer-chat-history-chat">
+                                <div class="customer-chat-talk-header" id="customer-chat-talk-header">
+                                    <div class="customer-chat-talk-header-users">
+                                        <div class="user-avatar">
+                                            <i id="history-chat-avatar-1" class="customer-chat-content-message-avatar-operator"></i>
+                                        </div>
+                                        <div class="user-info">
+                                            <div>
+                                                <span class="name">Name:</span>
+                                                <span id="history-chat-user-1" class="value"></span>
+                                            </div>
+                                            <div>
+                                                <span class="name">ID:</span>
+                                                <span id="history-chat-id-1" class="value"></span>
+                                            </div>
+                                            <div>
+                                                <span class="name">E-mail:</span>
+                                                <span id="history-chat-mail-1" class="value"></span>
+                                            </div>
+                                        </div>
+                                        <div class="user-avatar">
+                                            <i id="history-chat-avatar-2" class="customer-chat-content-message-avatar"></i>
+                                        </div>
+                                        <div class="user-info second">
+                                            <div>
+                                                <span class="name">Name:</span>
+                                                <span id="history-chat-user-2" class="value"></span>
+                                            </div>
+                                            <div>
+                                                <span class="name">ID:</span>
+                                                <span id="history-chat-id-2" class="value"></span>
+                                            </div>
+                                            <div>
+                                                <span class="name">E-mail:</span>
+                                                <span id="history-chat-mail-2" class="value"></span>
+                                            </div>
+                                        </div>
+                                        <div class="clear-both"></div>
+                                    </div>
+                                    <div class="date-info"></div>
+                                </div>
+                                <div id="history-results-chat" class="customer-chat-content-messages">
+                                    <div class="customer-chat-content-messages-wrapper"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scripts -->
+        
+        
+        <!--[if lte IE 9]>
+        <script type="text/javascript" src="<?php echo $app->asset('js/lib/es5-shim.min.js') ?>"></script>
+        <![endif]-->
+        <script src="<?php echo $app->asset('js/lib/jquery.js') ?>"></script>
+        <!--[if lte IE 9]>
+        <script type="text/javascript" src="<?php echo $app->asset('js/lib/placeholders.jquery.min.js') ?>"></script>
+        <![endif]-->
+        <script type="text/javascript">
+            // Always show the window in less that 5 seconds
+            // (added as inline script to execute even in case of JavaScript errors)
+            
+            setTimeout(function()
+            {
+                $(window).animate({ opacity : 1 }, { duration : 'slow'});
+            
+            }, 5 * 1000);
+        </script>
+        <script src="<?php echo $app->asset('js/lib/jquery.extramouse.js') ?>"></script>
+        <script src="<?php echo $app->asset('js/lib/jquery.cookie.js') ?>"></script>
+        <script src="<?php echo $app->asset('js/lib/jquery.ui.min.js') ?>"></script>
+        <script src="<?php echo $app->asset('js/lib/jquery.mousewhell.js') ?>"></script>
+        <script src="<?php echo $app->asset('js/lib/jquery.displayevents.js') ?>"></script>
+        <script src="<?php echo $app->asset('js/lib/jquery.mCustomScrollbar.js') ?>"></script>
+        <script src="<?php echo $app->asset('js/lib/colorpicker.js') ?>"></script>
+        <script src="<?php echo $app->asset('js/lib/bootstrap-popover.min.js') ?>"></script>
+        <script src="<?php echo $app->asset('js/lib/jQuery.AjaxFileUpload.js') ?>"></script>
+        <script src="<?php echo $app->asset('js/lib/json2.js') ?>"></script>
+        <script src="<?php echo $app->asset('js/lib/underscore.js') ?>"></script>
+        <script src="<?php echo $app->asset('js/lib/backbone.js') ?>"></script>
+        <script src="<?php echo $app->asset('js/lib/soundmanager2-nodebug-jsmin.js') ?>"></script>
+        
+        <script type="text/javascript">
+            // Basic configuration
+            
+            window.chatConfig = {
+            
+                rootPath : '<?php echo $app->asset("") ?>',
+                
+                templatesPath : '<?php echo $app->path("Admin:templates") ?>',
+                
+                installPath            : '<?php echo $app->path("Install:index") ?>',
+                isOperatorOnlinePath   : '<?php echo $app->path("Operator:isOnline") ?>',
+                isLoggedInPath         : '<?php echo $app->path("Authentication:isGuestLoggedIn") ?>',
+                loginPath              : '<?php echo $app->path("Authentication:loginGuest") ?>',
+                newMessagesPath        : '<?php echo $app->path("Message:operatorGetNew") ?>',
+                lastMessagesPath       : '<?php echo $app->path("Message:operatorGuestGetLast") ?>',
+                sendMessagePath        : '<?php echo $app->path("Message:send") ?>',
+                queryHistoryPath       : '<?php echo $app->path("Message:queryHistory") ?>',
+                keepAlivePath          : '<?php echo $app->path("Operator:stayAlive") ?>',
+                getTypingStatusPath    : '<?php echo $app->path("Operator:getTypingStatus") ?>',
+                updateTypingStatusPath : '<?php echo $app->path("Operator:updateTypingStatus") ?>',
+                getOnlineUsersPath     : '<?php echo $app->path("Operator:getOnlineUsers") ?>',
+                getOperatorPath        : '<?php echo $app->path("Operator:get") ?>',
+                getUserPath            : '<?php echo $app->path("Operator:get") ?>',
+                listOperatorsPath      : '<?php echo $app->path("Operator:list") ?>',
+                saveOperatorPath       : '<?php echo $app->path("Operator:update") ?>',
+                uploadAvatarPath       : '<?php echo $app->path("Operator:uploadAvatar") ?>',
+                deleteOperatorPath     : '<?php echo $app->path("Operator:delete") ?>',
+                contactPath            : '<?php echo $app->path("Contact:contact") ?>',
+                getSettingsPath        : '<?php echo $app->path("Config:getSettings") ?>',
+                updateSettingsPath     : '<?php echo $app->path("Config:updateSettings") ?>',
+                resetSettingsPath      : '<?php echo $app->path("Config:resetSettings") ?>',
+                widgetInitPath         : '<?php echo $app->path("Widget:init") ?>',
+                
+                ui : {
+                    
+                    installed      : '<?php echo $vars["installed"] ?>',
+                    messageSound   : '<?php echo $vars["messageSound"] ?>',
+                    timeDaysAgo    : 'days(s) ago',
+                    timeHoursAgo   : 'hour(s) ago',
+                    timeMinutesAgo : 'minute(s) ago',
+                    timeSecondsAgo : 'second(s) ago'
+                },
+                
+                defaultAvatars : JSON.parse('<?php echo $vars["defaultAvatars"] ?>')
+            };
+            
+            // Logged-in user info
+            
+            window.userData = JSON.parse('<?php echo $vars["userData"] ?>');
+        </script>
+        
+        <script src="<?php echo $app->asset('js/app/Application.js') ?>"></script>
+        
+        <script src="<?php echo $app->asset('js/app/service/SoundPlayer.js') ?>"></script>
+        
+        <script src="<?php echo $app->asset('js/app/model/UISettingsModel.js') ?>"></script>
+        <script src="<?php echo $app->asset('js/app/model/AdminSettingsModel.js') ?>"></script>
+        <script src="<?php echo $app->asset('js/app/model/MessageModel.js') ?>"></script>
+        <script src="<?php echo $app->asset('js/app/model/UserModel.js') ?>"></script>
+        <script src="<?php echo $app->asset('js/app/model/ChatViewModel.js') ?>"></script>
+        <script src="<?php echo $app->asset('js/app/model/AdminChatModel.js') ?>"></script>
+        
+        <script src="<?php echo $app->asset('js/app/view/MessageView.js') ?>"></script>
+        <script src="<?php echo $app->asset('js/app/view/ChatBoxView.js') ?>"></script>
+        <script src="<?php echo $app->asset('js/app/view/admin/TabsView.js') ?>"></script>
+        <script src="<?php echo $app->asset('js/app/view/admin/MenuView.js') ?>"></script>
+        <script src="<?php echo $app->asset('js/app/view/admin/ChatTabView.js') ?>"></script>
+        <script src="<?php echo $app->asset('js/app/view/admin/ChatView.js') ?>"></script>
+        <script src="<?php echo $app->asset('js/app/view/admin/SettingsView.js') ?>"></script>
+        <script src="<?php echo $app->asset('js/app/view/admin/OperatorsView.js') ?>"></script>
+        <script src="<?php echo $app->asset('js/app/view/SelectAvatarView.js') ?>"></script>
+        <script src="<?php echo $app->asset('js/app/view/admin/HistoryView.js') ?>"></script>
+        <script src="<?php echo $app->asset('js/app/view/admin/WindowView.js') ?>"></script>
+        <script src="<?php echo $app->asset('js/app/view/admin/DialogsView.js') ?>"></script>
+        <script src="<?php echo $app->asset('js/app/view/UserInfoPopoverView.js') ?>"></script>
+        
+        <script src="<?php echo $app->asset('js/admin.js') ?>"></script>
+        
+    </body>
+</html>

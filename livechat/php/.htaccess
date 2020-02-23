@@ -1,0 +1,4 @@
+Order Allow,Deny
+<FilesMatch "^app.php">
+Allow from all
+</FilesMatch>

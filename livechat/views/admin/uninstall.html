@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Install</title>
+        
+        <!-- Fonts -->
+        
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,300,600' rel='stylesheet' type='text/css'>
+        
+        <!-- Styles -->
+        
+        <link rel="stylesheet" href="<?php echo $app->asset('css/jquery.mCustomScrollbar.css') ?>" />
+        <link rel="stylesheet" href="<?php echo $app->asset('css/main.css') ?>" />
+        <link rel="stylesheet" href="<?php echo $app->asset('css/admin.css') ?>" />
+        <link rel="stylesheet" href="<?php echo $app->asset('css/bootstrap.css') ?>" />
+    </head>
+    <body>
+        <div id="customer-chat-widget" class="customer-chat customer-chat-login customer-chat-widget customer-chat-widget-install login-form">
+            <div class="customer-chat-header">
+                <div class="customer-chat-header-title">Uninstall</div>
+            </div>
+            
+            <div id="customer-chat-content-login-form" class="customer-chat-content">
+                <div class="customer-chat-content-info">
+                    <?php if(isset($vars['error'])) { ?>
+                    <div class="customer-chat-login-errors">
+                        <?php echo $vars['error'] ?>
+                    </div>
+                        <?php if(isset($vars['errorMsg'])) { ?>
+                        <p><b>Application returned the following message:</b></p>
+                        <div class="customer-chat-install-error-message"><?php echo $vars['errorMsg'] ?></div>
+                        <?php } ?>
+                    <?php } else if($vars['submit'] && $vars['success']) { ?>
+                    <div class="customer-chat-install-success">
+                        Appliaction uninstalled successfully, application tables have been removed.
+                    </div>
+                    <?php } else { ?>
+                    This will remove application tables and their data
+                    <?php } ?>
+                </div>
+                
+                <?php if(!$vars['submit'] || empty($vars['success'])) { ?>
+                <form action="" method="post">
+                    <div class="customer-chat-content-row">
+                        <button type="submit" id="customer-chat-login-start" class="customer-chat-content-button danger">Unistall <i class="icon-circle-arrow-right icon-white" style="margin: 3px 0 0 3px;"></i></button>
+                    </div>
+                </form>
+                <?php } ?>
+            </div>
+        </div>
+    </body>
+</html>
